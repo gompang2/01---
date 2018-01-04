@@ -22,9 +22,9 @@ void RectAngleManager(HDC hDC, RECT rect);
 void GhostConflictHandling(RECT Ghost1, RECT Ghost2, RECT Ghost3, RECT Ghost4);
 DWORD LoadWav(HWND hWnd, LPCTSTR lpszWave);
 
-MCI_OPEN_PARMS mciOpen; //파일을 로드
-MCI_PLAY_PARMS mciPlay; //파일을 재생
-MCI_STATUS_PARMS   mciStatus; //파일의 상태
+MCI_OPEN_PARMS mciOpen; // Load File
+MCI_PLAY_PARMS mciPlay; // Play File
+MCI_STATUS_PARMS   mciStatus; // File State
 UINT wDeviceID = 0;
 
 HINSTANCE g_hInst;
@@ -233,7 +233,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	switch (iMessage) {
 	case WM_CREATE:
 
-		// 메인화면
+		// Main
 		MainB[0] = (HBITMAP)LoadImage(NULL, L"./Resource/Main/Title.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 		MainB[1] = (HBITMAP)LoadImage(NULL, L"./Resource/Main/Start.bmp", IMAGE_BITMAP, 0, 0,
@@ -245,11 +245,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		Arrow[0] = (HBITMAP)LoadImage(NULL, L"./Resource/Main/arrow.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 
-		// 클리어화면
+		// Clear
 		GameClearB = (HBITMAP)LoadImage(NULL, L"./Resource/GameClear/clear.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 
-		// 인트로
+		// Intro
 		Intro[0] = (HBITMAP)LoadImage(NULL, L"./Resource/Intro/Intro_00.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 		Intro[1] = (HBITMAP)LoadImage(NULL, L"./Resource/Intro/Intro_01.bmp", IMAGE_BITMAP, 0, 0,
@@ -306,7 +306,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		GameOverB[2] = (HBITMAP)LoadImage(NULL, L"./Resource/GameOver/PressEnter.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 
-		// 팩맨 비트맵 [입][방향]
+		// Pacman Bitmap [Mouse][Direction]
 		PM[0][0] = (HBITMAP)LoadImage(NULL, L"./Resource/Pacman/P.left 1.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 		PM[0][1] = (HBITMAP)LoadImage(NULL, L"./Resource/Pacman/P.up 1.bmp", IMAGE_BITMAP, 0, 0,
@@ -358,7 +358,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		PM[2][7] = (HBITMAP)LoadImage(NULL, L"./Resource/Pacman/Death1.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 
-		/// MINT ////
+		// MINT
 		MINT[0][0] = (HBITMAP)LoadImage(NULL, L"./Resource/Mint/후정.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 		MINT[0][1] = (HBITMAP)LoadImage(NULL, L"./Resource/Mint/정.bmp", IMAGE_BITMAP, 0, 0,
@@ -373,7 +373,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 		MINT[2][1] = (HBITMAP)LoadImage(NULL, L"./Resource/Mint/정오.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-		/// Ghost ////
+		// Ghost
 		GHOST[0][0] = (HBITMAP)LoadImage(NULL, L"./Resource/Ghost/G_left 1.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 		GHOST[0][1] = (HBITMAP)LoadImage(NULL, L"./Resource/Ghost/G_up 1.bmp", IMAGE_BITMAP, 0, 0,
@@ -400,13 +400,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 		GHOST[2][3] = (HBITMAP)LoadImage(NULL, L"./Resource/Ghost/G_down 3.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-		/// Item ////
+		// Item
 
 		CandyBit[candy] = (HBITMAP)LoadImage(NULL, L"./Resource/Item/Candy.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 
 
-		// Map //
+		// Map
 		map[0] = (HBITMAP)LoadImage(NULL, L"./Resource/Map/Stage_1.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 		map[1] = (HBITMAP)LoadImage(NULL, L"./Resource/Map/Stage_2.bmp", IMAGE_BITMAP, 0, 0,
@@ -420,7 +420,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		map[5] = (HBITMAP)LoadImage(NULL, L"./Resource/Map/ClearStage.bmp", IMAGE_BITMAP, 0, 0,
 			LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 
-		// 타이머
+		// Timer
 
 		SetTimer(hWnd, 1, 1, (TIMERPROC)DoubleBuffering);
 
@@ -1257,7 +1257,7 @@ void CALLBACK DoubleBuffering(HWND hWnd, UINT uMsg, UINT ibEvent, DWORD dwTime)
 			SelectObject(CDC, hBitmap);
 
 
-			//// 사탕 처리 ////
+			//// Candy ////
 			hBitmap = (HBITMAP)SelectObject(CanDC, CandyBit[candy]);
 
 			for (int a = 0; a < 9; a++)
@@ -1293,7 +1293,7 @@ void CALLBACK DoubleBuffering(HWND hWnd, UINT uMsg, UINT ibEvent, DWORD dwTime)
 
 
 
-			/// Ghost ////
+			// Ghost
 
 			hBitmap = (HBITMAP)SelectObject(CDC, GHOST[Mouse][GhostMove1]);
 			TransparentBlt(hMemDC, Ghost1.left, Ghost1.top, 80, 80, CDC, 0, 0, 80, 80, RGB(255, 0, 255));
